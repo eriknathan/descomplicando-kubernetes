@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: giropops
+  labels:
+    name: giropops
+spec:
+  containers:
+  - name: girus
+    image: nginx
+    ports:
+      - containerPort: 80
+    resources: # usado para definir os recursos que serão utilizados pelo container.
+      limits: # definir os limites máximos de recursos que o container pode utilizar.
+        memory: "128Mi" # quantidade de memória que o container pode chegar.
+        cpu: "0.5" # quantidade de cpu que o container pode chegar
+      requests: # definir os recursos garantidos ao conteiner.
+        memory: "64Mi" # quantidade de memória que o container vai ter ao iniciar.
+        cpu: "0.3" # quantidade de cpu que o container vai ter ao iniciar
