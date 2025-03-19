@@ -10,10 +10,11 @@ spec:
     matchLabels:
       app: nginx-deployment 
   strategy:  # Estratégia que será utilizada para atualizar os Pods.
-    type: RollingUpdate # Tipo de estratégia de atualização que será utilizada.
-    rollingUpdate:
-      maxSurge: 1 # Quantidade máxima de pods que podem ser criado a mais durante um update.
-      maxUnavailable: 2 # Quantidade máxima de pods que podem ficar indisponíveis durante um update.
+    type: Recreate # Tipo de estratégia de atualização que será utilizada.
+    # type: RollingUpdate
+    # rollingUpdate:
+    #   maxSurge: 1 # Quantidade máxima de pods que podem ser criado a mais durante um update.
+    #   maxUnavailable: 2 # Quantidade máxima de pods que podem ficar indisponíveis durante um update.
   template:
     metadata:
       labels:
