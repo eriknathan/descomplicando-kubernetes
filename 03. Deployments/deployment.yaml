@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment # Tipo de Objeto que está sendo criado.
+metadata:
+  labels: # Utilizadas para identificar os objetos no Kubernetes.
+    app: nginx-deployment
+  name: nginx-deployment # Nome do Deployment
+spec:
+  replicas: 10 # Quantidade de réplicas que o Deployment irá ter.
+  selector: # Seletor que será utilizado para identificar os Pods que o Deployment irá gerenciar.
+    matchLabels:
+      app: nginx-deployment 
+  strategy:  # Estratégia que será utilizada para atualizar os Pods.
+    type: RollingUpdate # Tipo de estratégia de atualização que será utilizada.
+    rollingUpdate:
+      maxSurge: 1 # Quantidade máxima de pods que podem ser criado a mais durante um update.
+      maxUnavailable: 2 # Quantidade máxima de pods que podem ficar indisponíveis durante um update.
+  template:
+    metadata:
+      labels:
+        app: nginx-deployment
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.15.0
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 256Mi
+          requests:
+            cpu: "0.25"
+            memory: 128Mi
